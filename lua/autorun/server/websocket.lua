@@ -115,7 +115,11 @@ function WS.Client:OnConnected(sock,success,ip,port)
 		print(success)
 		error("Socked failed to connect")
 	end
-
+	
+	if self.url_info.protocol == "wss://" then 
+		self.bsock:StartSSLClient()
+	end
+	
 	self.websocket:Connect()
 end
 
